@@ -29,7 +29,6 @@ dp = Dispatcher()
 
 @dp.message(F.chat.id == -1002258024710, F.text)
 async def handler(message: types.Message) -> None:
-    content = message.text.strip()
     if message.text.lower() == "мут":
         if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
             if message.reply_to_message:
@@ -53,10 +52,11 @@ async def handler(message: types.Message) -> None:
                     await message.answer(f"<a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> размучен администратором <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a>", parse_mode="HTML")
                 else:
                     await message.reply("Этот пользователь не находится в муте.")
-    if content.startswith("."):
-        content = content.lstrip(".")
 
-        if len(content) == 0:
+    if message.text.startswith("."):
+        text = message.text.lstrip(".").strip()
+
+        if not text:
             return
 
         key = random.choice(["AIzaSyAMYDZ4V3XL6GPDgZrO8XKaqVfnsPwdHX8", "AIzaSyCVEpbydlExM33XVZuef6VbplUd5V0Th1Y"])
