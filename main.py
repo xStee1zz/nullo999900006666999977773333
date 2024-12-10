@@ -53,13 +53,13 @@ async def handler(message: types.Message) -> None:
                 else:
                     await message.reply("Этот пользователь не находится в муте.")
 
-    if message.text.startswith("."):
-        text = message.text.lstrip(".").strip()
+    if message.text.startswith('.'):
+        text: str = message.text.lstrip('. ')
 
         if not text:
             return
 
-        key = random.choice(["AIzaSyAMYDZ4V3XL6GPDgZrO8XKaqVfnsPwdHX8", "AIzaSyCVEpbydlExM33XVZuef6VbplUd5V0Th1Y"])
+        key = random.choice(["AIzaSyBbpJJRg_K_5hfmGdMVK67cZ6eSvfM-_bY", "AIzaSyDirYshT8Vwp3_01YYy5ox6YOFDqFYR1SE", "AIzaSyB2kjjbPhMf2fy_2zq5H86kKufguv6Sces", "AIzaSyCcZxEeDcHFyBEgEcvnxa20gLbviE9B7jw", "AIzaSyAYMK4aeNw0RwF8TW3-69XmdTbEDS-h9G0"])
 
         async with aiohttp.ClientSession() as session:
             data = {
