@@ -64,4 +64,4 @@ async def handler(message: types.Message) -> None:
                 except Exception as e:
                     await message.reply(f"Ошибка: {e}")
 
-asyncio.run(await dp.start_polling(Bot(token="7804030886:AAFmqYAPW08gRlS6N6ASwqp5GXNPyifcS64")))
+asyncio.run(dp.start_polling(Bot(token="7804030886:AAFmqYAPW08gRlS6N6ASwqp5GXNPyifcS64")))
