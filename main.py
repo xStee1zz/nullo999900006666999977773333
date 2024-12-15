@@ -29,8 +29,7 @@ dp = Dispatcher()
 
 @dp.message(F.chat.id == -1002258024710, F.text)
 async def handler(message: types.Message) -> None:
-    if message.text.lower() == "мут":
-        if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
+    if message.text.lower() == "мут" and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]
             if message.reply_to_message:
                 if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status in ["administrator", "creator"]:
                     await message.reply("Невозможно выдать мут администратору чата.")
@@ -69,5 +68,4 @@ async def handler(message: types.Message) -> None:
 async def main() -> None:
     await dp.start_polling(bot)
 
-if __name__ == "__main__":
-    asyncio.run(main())
+asyncio.run(main())
