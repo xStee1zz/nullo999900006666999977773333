@@ -26,9 +26,10 @@ months = {
 
 dp = Dispatcher()
 
-@dp.message(F.chat.id == -1002258024710, F.text)
+@dp.message(F.chat.id == -1002258024710, F.chat.id == -1002429422593, F.text)
 async def handler(message: types.Message) -> None:
-    if message.text.lower() == "мут" and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]
+    if message.text.lower() == "мут":
+        if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"] and message.chat.id == -1002258024710:
             if message.reply_to_message:
                 if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status in ["administrator", "creator"]:
                     await message.reply("Невозможно выдать мут администратору чата.")
@@ -42,7 +43,7 @@ async def handler(message: types.Message) -> None:
                         await bot.restrict_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id, permissions=types.ChatPermissions(), until_date=end_time_timestamp)
                         await message.answer(f"<a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> в муте до {formatted_end_time} по московскому времени.\nАдминистратор: <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a>", parse_mode="HTML")
     if message.text.lower() == "размут":
-        if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
+        if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"] and message.chat.id == -1002258024710:
             if message.reply_to_message:
                 if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status == "restricted":
                     await bot.restrict_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id, permissions=types.ChatPermissions(can_send_messages=True, can_send_media_messages=True), until_date=None)
