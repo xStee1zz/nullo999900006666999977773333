@@ -24,6 +24,7 @@ months = {
     "December": "декабря"
 }
 
+bot = Bot(token="7804030886:AAFmqYAPW08gRlS6N6ASwqp5GXNPyifcS64")
 dp = Dispatcher()
 
 @dp.message(F.chat.id == -1002258024710, F.text)
@@ -83,7 +84,6 @@ async def handlers(message: types.Message) -> None:
                     await message.reply(f"Ошибка: {e}")
 
 async def main() -> None:
-    bot = Bot(token="7804030886:AAFmqYAPW08gRlS6N6ASwqp5GXNPyifcS64")
     await dp.start_polling(bot)
 
 asyncio.run(main())
