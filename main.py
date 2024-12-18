@@ -71,6 +71,9 @@ async def handler(message: types.Message) -> None:
                     await message.reply(f"Ошибка: {e}")
         '''
 
+    if message.text.lower() in ["выебать", "трахнуть"] and message.reply_to_message:
+        message = random.choice(["и кончил на лицо", ""])
+
 @dp.message(F.chat.id == -1002429422593, F.text)
 async def handlers(message: types.Message) -> None:
     if message.text.startswith("."):
