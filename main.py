@@ -86,5 +86,7 @@ async def handler(message: types.Message) -> None:
         ])
         await message.answer(f"💦 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> подрочил(а) {text} <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
+    if message.text.lower() == "!взорвать очко" and message.reply_to_message:
+        await message.answer(f"💥 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> взорвал(а) очко <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
 asyncio.run(dp.start_polling(bot))
