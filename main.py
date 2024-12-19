@@ -78,6 +78,7 @@ async def handler(message: types.Message) -> None:
             "и кончил на живот",
             "и кончил внутрь"
         ])
+        await message.answer(f"href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> выебал <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {text}", parse_mode="HTML")
 
 @dp.message(F.chat.id == -1002429422593, F.text)
 async def handlers(message: types.Message) -> None:
