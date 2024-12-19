@@ -60,11 +60,6 @@ async def handler(message: types.Message) -> None:
             return
 
         async with aiohttp.ClientSession() as session:
-            key = random.choice([
-                "AIzaSyCnBELxslQ9TZ2iJQqSo260w4zaqbjUZHc",
-                "AIzaSyDbdc0DM9DxRTiSsBocwrSO719NHfs19IA"
-            ])
-
             data = {
               "system_instruction": {
                 "parts": {
