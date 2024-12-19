@@ -86,12 +86,12 @@ async def handler(message: types.Message) -> None:
 
     if message.text.lower() == "!подрочить" and message.reply_to_message:
         text: str = random.choice([
-            "и кончил на лицо",
-            "и кончил в рот",
-            "и кончил на живот",
-            "и кончил внутрь"
+            "и кончил(а) на лицо",
+            "и кончил(а) в рот",
+            "и кончил(а) на живот",
+            "и кончил(а) внутрь"
         ])
-        await message.answer(f"href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> выебал <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> {text}", parse_mode="HTML")
+        await message.answer(f"href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> подрочил(а) {text} <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
 
 asyncio.run(dp.start_polling(bot))
