@@ -84,7 +84,7 @@ async def handler(message: types.Message) -> None:
             "и кончил(а) на лицо",
             "и кончил(а) в рот"
         ])
-        await message.answer(f"href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> подрочил(а) {text} <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
+        await message.answer(f"💦 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> подрочил(а) {text} <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
 
 asyncio.run(dp.start_polling(bot))
