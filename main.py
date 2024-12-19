@@ -73,7 +73,7 @@ async def handler(message: types.Message) -> None:
               },
               "contents": {
                 "parts": {
-                  "text": ""
+                  "text": text
                 }
               }
             }
