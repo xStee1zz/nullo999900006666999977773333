@@ -71,7 +71,7 @@ async def handler(message: types.Message) -> None:
                     await message.reply(f"Ошибка: {e}")
         '''
 
-    if message.text.lower() in ["выебать", "трахнуть"] and message.reply_to_message:
+    if message.text.lower() == "!подрочить" and message.reply_to_message:
         text: str = random.choice([
             "и кончил на лицо",
             "и кончил в рот",
