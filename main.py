@@ -65,7 +65,7 @@ async def handler(message: types.Message) -> None:
                 "AIzaSyDbdc0DM9DxRTiSsBocwrSO719NHfs19IA"
             ])
 
-            {
+            data = {
               "system_instruction": {
                 "parts": {
                   "text": ""
