@@ -84,12 +84,16 @@ async def handler(message: types.Message) -> None:
             "и кончил(а) на лицо",
             "и кончил(а) в рот"
         ])
-        await message.answer(f"💦 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> подрочил(а) {text} <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
+        await message.answer(f"💦 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> подрочил(а) {text} челу <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
     if message.text.lower() == "!взорвать очко" and message.reply_to_message:
-        await message.answer(f"💥 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> взорвал(а) очко <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
+        await message.answer(f"💥 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> взорвал(а) очко челу <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
     if message.text.lower() == "!дать по ебалу" and message.reply_to_message:
-        await message.answer(f"<a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> дал(а) по ебалу <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
+        await message.answer(f"🤬 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> дал(а) по ебалу челу <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
+
+    if message.text.lower() == "!делай минет" and message.reply_to_message:
+        await message.answer(f"🥵 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> получает удовольствие от минета от чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
+
 
 asyncio.run(dp.start_polling(bot))
