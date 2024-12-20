@@ -29,7 +29,7 @@ dp = Dispatcher()
 
 @dp.message(F.chat.id == -1002258024710, F.text)
 async def handler(message: types.Message) -> None:
-    if message.text.lower() == "мут":
+    if message.text.lower().startswith("мут"):
         if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
             if message.reply_to_message:
                 if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status in ["administrator", "creator"]:
