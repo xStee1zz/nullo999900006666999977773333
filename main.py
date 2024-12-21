@@ -38,7 +38,11 @@ async def handler(message: types.Message) -> None:
             if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status == "restricted":
                 await message.reply("Этот пользователь уже находится в муте.")
             else:
-                end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(hours=24)
+                if text.enswith("д"):
+                    if len(text) == 5:
+                        
+                    end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(hours=24)
+
                 end_time_timestamp = int(end_time.timestamp())
                 formatted_end_time = f"{end_time.day} {months[end_time.strftime('%B')]} {end_time.hour}:{end_time.strftime('%M')}"
                 await bot.restrict_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id, permissions=types.ChatPermissions(), until_date=end_time_timestamp)
