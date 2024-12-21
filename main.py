@@ -40,8 +40,8 @@ async def handler(message: types.Message) -> None:
             else:
                 if text.enswith("д"):
                     if len(text) == 5:
-                        
-                    end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(hours=24)
+                        if text[3].isdigit() and int(text[3]) in (1, 2, 3):
+                            end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(days=int(text[3]))
 
                 end_time_timestamp = int(end_time.timestamp())
                 formatted_end_time = f"{end_time.day} {months[end_time.strftime('%B')]} {end_time.hour}:{end_time.strftime('%M')}"
