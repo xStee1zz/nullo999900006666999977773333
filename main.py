@@ -61,15 +61,12 @@ async def handler(message: types.Message) -> None:
                 await bot.restrict_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id, permissions=types.ChatPermissions(), until_date=end_time_timestamp)
                 await message.answer(f"<a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> в муте до {formatted_end_time} по московскому времени.\nАдминистратор: <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a>", parse_mode="HTML")
 
-    if message.text.lower() == "размут":
-        if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
-            if message.reply_to_message:
-                if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status == "restricted":
-                    await bot.restrict_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id, permissions=types.ChatPermissions(can_send_messages=True, can_send_media_messages=True), until_date=None)
-                    await bot.promote_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)
-                    await message.answer(f"<a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> размучен администратором <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a>", parse_mode="HTML")
-                else:
-                    await message.reply("Этот пользователь не находится в муте.")
+    if message.reply_to_message and message.text.lower() == "размут" and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
+        if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status == "restricted":
+            await bot.promote_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)
+                await message.answer(f"<a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> размучен администратором <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a>", parse_mode="HTML")
+        else:
+            await message.reply("Этот пользователь не находится в муте.")
 
     if message.text.startswith("."):
         text: str = message.text.lstrip(". ")
