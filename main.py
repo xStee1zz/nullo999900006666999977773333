@@ -38,17 +38,17 @@ async def handler(message: types.Message) -> None:
             if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status == "restricted":
                 await message.reply("Этот пользователь уже находится в муте.")
             else:
-                if text.endswith("д"):
+                if text.endswith(("день", "дней")):
                     if len(text) == 5 and text[3].isdigit() and int(text[3]) in (1, 2, 3):
                         end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(days=int(text[3]))
-                if text.endswith("ч"):
+                if text.endswith(("час", "часов")):
                     if len(text) == 5 and text[3].isdigit() and int(text[3]) in (1, 2, 3, 4, 5, 6, 7, 8, 9):
                         end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(hours=int(text[3]))
                     if len(text) == 6 and text[3].isdigit() and text[4].isdigit():
                         kolvo = text[3] + text[4]
                         if int(kolvo) in (10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24):
                             end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(hours=int(kolvo))
-                if text.endswith("м"):
+                if text.endswith(("минут", "минуты")):
                     if len(text) == 5 and text[3].isdigit() and int(text[3]) in (1, 2, 3, 4, 5, 6, 7, 8, 9):
                         end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(minutes=int(text[3]))
                     if len(text) == 6 and text[3].isdigit() and text[4].isdigit():
