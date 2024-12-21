@@ -39,9 +39,8 @@ async def handler(message: types.Message) -> None:
                 await message.reply("Этот пользователь уже находится в муте.")
             else:
                 if text.endswith("д"):
-                    if len(text) == 5:
-                        if text[3].isdigit() and int(text[3]) in (1, 2, 3):
-                            end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(days=int(text[3]))
+                    if len(text) == 5 and text[3].isdigit() and int(text[3]) in (1, 2, 3):
+                        end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(days=int(text[3]))
                 if text.endswith("ч"):
                     if len(text) == 5 and text[3].isdigit() and int(text[3]) in (1, 2, 3, 4, 5, 6, 7, 8, 9):
                         end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(hours=int(text[3]))
