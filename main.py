@@ -38,17 +38,17 @@ async def handler(message: types.Message) -> None:
                 await message.reply("Этот пользователь уже находится в муте.")
             else:
                 text = message.text.lower().replace(" ", "")
-                if re.search(r"дня|день|дней", text):
+                if text.endswith("д"):
                     if len(text) == 5 and text[3].isdigit() and int(text[3]) in (1, 2, 3):
                         end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(days=int(text[3]))
-                if re.search(r"час|часа|часов", text):
+                if text.endswith("ч"):
                     if len(text) == 5 and text[3].isdigit() and int(text[3]) in (1, 2, 3, 4, 5, 6, 7, 8, 9):
                         end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(hours=int(text[3]))
                     if len(text) == 6 and text[3].isdigit() and text[4].isdigit():
                         kolvo = text[3] + text[4]
                         if int(kolvo) in (10, 11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24):
                             end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(hours=int(kolvo))
-                if re.search(r"минут|минута|минуты", text):
+                if text.endswith("м"):
                     if len(text) == 5 and text[3].isdigit() and int(text[3]) in (1, 2, 3, 4, 5, 6, 7, 8, 9):
                         end_time = datetime.now(pytz.timezone("Europe/Moscow")) + timedelta(minutes=int(text[3]))
                     if len(text) == 6 and text[3].isdigit() and text[4].isdigit():
@@ -59,7 +59,7 @@ async def handler(message: types.Message) -> None:
                 try:
                     end_time_timestamp = int(end_time.timestamp())
                 except NameError:
-                    await message.reply("Допустимый формат:\n - мут <1-3> <дня/день/дней>\n - мут <1-24> <час/часа/часов>\n - мут <1-60> <минут/минута/минуты>")
+                    await message.reply("Допустимый формат:\n - мут <1-3>д\n - мут <1-24>ч\n - мут <1-60>м")
                     return
 
                 formatted_end_time = f"{end_time.day} {months[end_time.strftime('%B')]} {end_time.hour}:{end_time.strftime('%M')}"
