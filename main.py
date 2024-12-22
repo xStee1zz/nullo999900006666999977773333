@@ -3,7 +3,6 @@ import logging
 from datetime import datetime, timedelta
 import pytz
 import random
-import re
 
 from aiogram import Bot, Dispatcher, F, types
 import aiohttp
