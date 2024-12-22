@@ -71,13 +71,8 @@ async def handler(message: types.Message) -> None:
                     return
 
                 formatted_end_time = f"{end_time.day} {months[end_time.strftime('%B')]} {end_time.hour}:{end_time.strftime('%M')}"
-
-                if message.reply_to_message.sender_chat:
-                    await bot.restrict_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.sender_chat.id, permissions=types.ChatPermissions(), until_date=end_time_timestamp)
-                    await message.answer(f"<a href='tg://user?id={message.reply_to_message.sender_chat.id}'>{message.reply_to_message.sender_chat.title}</a> в муте до {formatted_end_time} по московскому времени.\nАдминистратор: <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a>", parse_mode="HTML")
-                else:
-                    await bot.restrict_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id, permissions=types.ChatPermissions(), until_date=end_time_timestamp)
-                    await message.answer(f"<a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> в муте до {formatted_end_time} по московскому времени.\nАдминистратор: <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a>", parse_mode="HTML")
+                await bot.restrict_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id, permissions=types.ChatPermissions(), until_date=end_time_timestamp)
+                await message.answer(f"<a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> в муте до {formatted_end_time} по московскому времени.\nАдминистратор: <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a>", parse_mode="HTML")
 
     if message.reply_to_message and message.text.lower() == "размут" and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
         if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status == "restricted":
