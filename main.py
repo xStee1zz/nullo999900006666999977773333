@@ -110,18 +110,19 @@ async def handler(message: types.Message) -> None:
     if message.text.lower() == "!подрочить" and message.reply_to_message:
         text: str = random.choice([
             "и кончил(а) на лицо",
-            "и кончил(а) в рот"
+            "и кончил(а) в рот",
+            "и кончил(а) на волосы"
         ])
-        await message.answer(f"💦 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> подрочил(а) {text} челу <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
+        await message.answer(f"💦 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> подрочил(а) {text} чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
-    if message.text.lower() == "!взорвать очко" and message.reply_to_message:
-        await message.answer(f"💥 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> взорвал(а) очко челу <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
+    if message.text.lower() == "взорвать очко" and message.reply_to_message:
+        await message.answer(f"💥 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> взорвал(а) очко чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
-    if message.text.lower() == "!дать по ебалу" and message.reply_to_message:
-        await message.answer(f"🤬 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> дал(а) по ебалу челу <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
+    if message.text.lower() == "уебать" and message.reply_to_message:
+        await message.answer(f"🤬 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> уебал(а) чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
-    if message.text.lower() == "!делай минет" and message.reply_to_message:
-        await message.answer(f"🥵 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> получает удовольствие от минета от чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
+    if message.text.lower() == "изнасиловать" and message.reply_to_message:
+        await message.answer(f"🥵 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> изнасиловал(а) чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
 
 async def main() -> None:
