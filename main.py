@@ -27,6 +27,10 @@ months = {
 bot = Bot(token="7804030886:AAFmqYAPW08gRlS6N6ASwqp5GXNPyifcS64")
 dp = Dispatcher()
 
+@dp.message(F.chat.id == -1002258024710)
+async def handlers(message: types.Message) -> None:
+    if message.from_user.id != -1002258024710 or message.from_user.id != -1002007082377:
+
 @dp.message(F.chat.id == -1002258024710, F.text)
 async def handler(message: types.Message) -> None:
     if message.reply_to_message and message.text.lower().startswith("мут") and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
