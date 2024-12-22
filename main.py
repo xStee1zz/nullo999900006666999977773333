@@ -29,8 +29,9 @@ dp = Dispatcher()
 
 @dp.message(F.chat.id == -1002258024710)
 async def handlers(message: types.Message) -> None:
-    if message.from_user.id != -1002258024710 or message.from_user.id != -1002007082377:
+    if message.sender_chat and message.sender_chat.id not in [-1002007082377, -1002258024710]:
         await message.delete()
+
 
 @dp.message(F.chat.id == -1002258024710, F.text)
 async def handler(message: types.Message) -> None:
