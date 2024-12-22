@@ -28,9 +28,9 @@ bot = Bot(token="7804030886:AAFmqYAPW08gRlS6N6ASwqp5GXNPyifcS64")
 dp = Dispatcher()
 
 
-@dp.message(F.chat.id == -1002258024710 or F.chat.id == -1001632023363, F.text)
+@dp.message(F.chat.id == -1002258024710, F.text)
 async def handler(message: types.Message) -> None:
-    if message.chat.id == -1002258024710 and message.reply_to_message and message.text.lower().startswith("мут") and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
+    if message.reply_to_message and message.text.lower().startswith("мут") and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
         if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status in ["administrator", "creator"]:
             await message.reply("Невозможно выдать мут администратору чата.")
         else:
@@ -70,7 +70,7 @@ async def handler(message: types.Message) -> None:
                 await bot.restrict_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id, permissions=types.ChatPermissions(), until_date=end_time_timestamp)
                 await message.answer(f"<a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> в муте до {formatted_end_time} по московскому времени.\nАдминистратор: <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a>", parse_mode="HTML")
 
-    if message.chat.id == -1002258024710 and message.reply_to_message and message.text.lower() == "размут" and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
+    if message.reply_to_message and message.text.lower() == "размут" and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
         if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status == "restricted":
             await bot.promote_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)
             await message.answer(f"<a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> размучен администратором <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a>", parse_mode="HTML")
@@ -103,7 +103,7 @@ async def handler(message: types.Message) -> None:
                 except Exception as e:
                     await message.reply(f"Ошибка: {e}")
 
-    if message.chat.id == -1002258024710 and message.text.lower() == "!подрочить" and message.reply_to_message:
+    if message.text.lower() == "!подрочить" and message.reply_to_message:
         text: str = random.choice([
             "и кончил(а) на лицо",
             "и кончил(а) в рот",
@@ -111,13 +111,13 @@ async def handler(message: types.Message) -> None:
         ])
         await message.answer(f"💦 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> подрочил(а) {text} чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
-    if message.chat.id == -1002258024710 and message.text.lower() == "взорвать очко" and message.reply_to_message:
+    if message.text.lower() == "взорвать очко" and message.reply_to_message:
         await message.answer(f"💥 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> взорвал(а) очко чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
-    if message.chat.id == -1002258024710 and message.text.lower() == "уебать" and message.reply_to_message:
+    if message.text.lower() == "уебать" and message.reply_to_message:
         await message.answer(f"🤬 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> уебал(а) чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
-    if message.chat.id == -1002258024710 and message.text.lower() == "изнасиловать" and message.reply_to_message:
+    if message.text.lower() == "изнасиловать" and message.reply_to_message:
         await message.answer(f"🥵 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> изнасиловал(а) чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
 
