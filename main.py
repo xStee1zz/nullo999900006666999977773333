@@ -42,6 +42,9 @@ async def handler(message: types.Message) -> None:
             if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status == "restricted":
                 await message.reply("Этот пользователь уже находится в муте.")
             else:
+                if message.reply_to_message.sender_chat.id in [-1002007082377, -1002258024710]:
+                    await message.reply("Невозможно выдать мут администратору чата.")
+                    return
                 text = message.text.lower().replace(" ", "")
                 if text.endswith("д"):
                     if len(text) == 5 and text[3].isdigit() and int(text[3]) in (1, 2, 3):
