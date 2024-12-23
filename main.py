@@ -103,7 +103,7 @@ async def handler(message: types.Message) -> None:
                 except Exception as e:
                     await message.reply(f"Ошибка: {e}")
 
-    if message.text.lower() == "!подрочить" and message.reply_to_message:
+    if message.text.lower() == "подрочить" and message.reply_to_message:
         text: str = random.choice([
             "и кончил(а) на лицо",
             "и кончил(а) в рот",
