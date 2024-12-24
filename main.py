@@ -121,11 +121,4 @@ async def handler(message: types.Message) -> None:
         await message.answer(f"🥵 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> изнасиловал(а) чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
 
-async def main() -> None:
-    try:
-        await dp.start_polling(bot)
-    finally:
-        await bot.session.close()
-
-
-asyncio.run(main())
+asyncio.run(dp.start_polling(bot))
