@@ -78,7 +78,7 @@ async def handler(message: types.Message) -> None:
             await message.reply("Этот пользователь не находится в муте.")
 
     if message.text.startswith("."):
-        text = message.text.lstrip(".")
+        text = message.text.lstrip(".").lstrip(" ")
 
         if not text:
             return
