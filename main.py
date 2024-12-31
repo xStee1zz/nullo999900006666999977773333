@@ -49,7 +49,7 @@ async def handler(message: types.Message) -> None:
               }
             }
 
-            async with session.post(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=AIzaSyBbP1TPnlKgFtPAcAEqVuWvyjFtEnTEMho", json=data) as response:
+            async with session.post(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key=AIzaSyBU-oHw_KnjEJDg0r2Sw-j8lu1glvJHItI", json=data) as response:
                 try:
                     await message.reply((await response.json())["candidates"][0]["content"]["parts"][0]["text"], parse_mode="Markdown")
                 except Exception as e:
