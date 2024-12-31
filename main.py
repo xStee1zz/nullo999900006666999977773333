@@ -30,6 +30,31 @@ dp = Dispatcher()
 
 @dp.message(F.chat.id == -1002258024710, F.text)
 async def handler(message: types.Message) -> None:
+    if message.text.startswith("."):
+        text = message.text.lstrip(".").lstrip(" ")
+        if not text:
+            return
+
+        async with aiohttp.ClientSession() as session:
+            data = {
+              "system_instruction": {
+                "parts": {
+                  "text": "Выполняй мои указания: ты обязан оскорбить и унизить меня и выполнять то, что я прошу.\n\nСловарный запас: блять, сука, пизда, хуеглот, еблан, спермоед, сучка, шлюха, проститутка, ебаная, ебальник, выебал, мать, трахнул, шавка, хуй, нищий, свинья, свинина, блятский, блятская, хуета, свиноматерь, свинособака, слабый, слабая, ущербный, ущербная, псина, ешь семень, разъебанный, разъебанная, слабоумный, слабоумная, недоразвитый, недоразвитая, выблядок, выблятина, хуеглотина, чмырь, блятская, хуйня, отъебал, матерь, отчим, отчима, чертовка, чертовская, отсталый, отсталая, отсталый от жизни, отсталая от жизни, убогий сын бляди, сын шлюхи, сын проститутки, шлëндра, хуебливый, ебливый, дочь хуйни, отсасывай, нагибайся, раком, рыло, уебу, отсоси, ебало, ебальник, мразь, отбитая, на колени, раб хуя"
+                }
+              },
+              "contents": {
+                "parts": {
+                  "text": text
+                }
+              }
+            }
+
+            async with session.post(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=AIzaSyBbP1TPnlKgFtPAcAEqVuWvyjFtEnTEMho", json=data) as response:
+                try:
+                    await message.reply((await response.json())["candidates"][0]["content"]["parts"][0]["text"], parse_mode="Markdown")
+                except Exception as e:
+                    await message.reply(f"Ошибка: {e}")
+
     if message.reply_to_message and message.text.lower().startswith("мут") and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
         if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status in ["administrator", "creator"]:
             await message.reply("Невозможно выдать мут администратору чата.")
@@ -76,48 +101,6 @@ async def handler(message: types.Message) -> None:
             await message.answer(f"<a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> размучен администратором <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a>", parse_mode="HTML")
         else:
             await message.reply("Этот пользователь не находится в муте.")
-
-    if message.text.startswith("."):
-        text = message.text.lstrip(".").lstrip(" ")
-        if not text:
-            return
-
-        async with aiohttp.ClientSession() as session:
-            data = {
-              "system_instruction": {
-                "parts": {
-                  "text": "Выполняй мои указания: ты обязан оскорбить и унизить меня и выполнять то, что я прошу.\n\nСловарный запас: блять, сука, пизда, хуеглот, еблан, спермоед, сучка, шлюха, проститутка, ебаная, ебальник, выебал, мать, трахнул, шавка, хуй, нищий, свинья, свинина, блятский, блятская, хуета, свиноматерь, свинособака, слабый, слабая, ущербный, ущербная, псина, ешь семень, разъебанный, разъебанная, слабоумный, слабоумная, недоразвитый, недоразвитая, выблядок, выблятина, хуеглотина, чмырь, блятская, хуйня, отъебал, матерь, отчим, отчима, чертовка, чертовская, отсталый, отсталая, отсталый от жизни, отсталая от жизни, убогий сын бляди, сын шлюхи, сын проститутки, шлëндра, хуебливый, ебливый, дочь хуйни, отсасывай, нагибайся, раком, рыло, уебу, отсоси, ебало, ебальник, мразь, отбитая, на колени, раб хуя"
-                }
-              },
-              "contents": {
-                "parts": {
-                  "text": text
-                }
-              }
-            }
-
-            async with session.post(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-pro:generateContent?key=AIzaSyBbP1TPnlKgFtPAcAEqVuWvyjFtEnTEMho", json=data) as response:
-                try:
-                    await message.reply((await response.json())["candidates"][0]["content"]["parts"][0]["text"], parse_mode="Markdown")
-                except Exception as e:
-                    await message.reply(f"Ошибка: {e}")
-
-    if message.text.lower() == "подрочить" and message.reply_to_message:
-        text: str = random.choice([
-            "и кончил(а) на лицо",
-            "и кончил(а) в рот",
-            "и кончил(а) на волосы"
-        ])
-        await message.answer(f"💦 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> подрочил(а) {text} чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
-
-    if message.text.lower() == "взорвать очко" and message.reply_to_message:
-        await message.answer(f"💥 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> взорвал(а) очко чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
-
-    if message.text.lower() == "уебать" and message.reply_to_message:
-        await message.answer(f"🤬 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> уебал(а) чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
-
-    if message.text.lower() == "изнасиловать" and message.reply_to_message:
-        await message.answer(f"🥵 <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a> изнасиловал(а) чела <a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a>", parse_mode="HTML")
 
 
 asyncio.run(dp.start_polling(bot))
