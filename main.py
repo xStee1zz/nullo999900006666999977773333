@@ -51,6 +51,7 @@ async def handler(message: types.Message) -> None:
 
             async with session.post(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:streamGenerateContent?key=AIzaSyCxscNfFRCcbIMV078K5QdUk09OoujG8tY", json=data) as response:
                 message = None
+                text = ""
                 async for chunk in response.content.iter_any():
                     print()
 
