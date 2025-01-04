@@ -3,6 +3,7 @@ from datetime import datetime, timedelta
 import logging
 import pytz
 import random
+import json
 
 from aiogram import Bot, Dispatcher, F, types
 import aiohttp
@@ -53,7 +54,7 @@ async def handler(message: types.Message) -> None:
                 msg = None
                 text = ""
                 async for chunk in response.content.iter_any():
-                    text = chunk.decode().lstrip(",[").rstrip("]")
+                    text = json.loads(chunk.decode().lstrip(",[").rstrip("]"))
 
     if message.reply_to_message and message.text.lower().startswith("мут") and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
         if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status in ["administrator", "creator"]:
