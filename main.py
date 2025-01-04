@@ -31,7 +31,11 @@ dp = Dispatcher()
 
 @dp.message(F.text)
 async def handler(message: types.Message) -> None:
-    if message.text.startswith("."):
+    if message.chat.type == "private":
+        await message.answer("Я троллер с ИИ и работаю только в чатах (зайди в мой профиль и нажми добавить в группу)")
+        return
+
+    elif message.text.startswith("."):
         text = message.text.lstrip(".").lstrip(" ")
         if not text:
             return
@@ -369,7 +373,7 @@ async def handler(message: types.Message) -> None:
                 except Exception as e:
                     await message.reply(f"Ошибка: {e}")
 
-    if message.reply_to_message and message.text.lower().startswith("мут") and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
+    elif message.chat.id == -1002258024710 and message.reply_to_message and message.text.lower().startswith("мут") and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
         if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status in ["administrator", "creator"]:
             await message.reply("Невозможно выдать мут администратору чата.")
         else:
@@ -409,7 +413,7 @@ async def handler(message: types.Message) -> None:
                 await bot.restrict_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id, permissions=types.ChatPermissions(), until_date=end_time_timestamp)
                 await message.answer(f"<a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> в муте до {formatted_end_time} по московскому времени.\nАдминистратор: <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a>", parse_mode="HTML")
 
-    if message.reply_to_message and message.text.lower() == "размут" and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
+    elif message.chat.id == -1002258024710 and message.reply_to_message and message.text.lower() == "размут" and (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.from_user.id)).status in ["administrator", "creator"]:
         if (await bot.get_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)).status == "restricted":
             await bot.promote_chat_member(chat_id=message.chat.id, user_id=message.reply_to_message.from_user.id)
             await message.answer(f"<a href='tg://user?id={message.reply_to_message.from_user.id}'>{message.reply_to_message.from_user.full_name}</a> размучен администратором <a href='tg://user?id={message.from_user.id}'>{message.from_user.full_name}</a>", parse_mode="HTML")
