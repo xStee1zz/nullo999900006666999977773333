@@ -363,7 +363,7 @@ async def handler(message: types.Message) -> None:
             }
             key = random.choice(["AIzaSyCxscNfFRCcbIMV078K5QdUk09OoujG8tY", "AIzaSyBU-oHw_KnjEJDg0r2Sw-j8lu1glvJHItI"])
 
-            async with session.post(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:streamGenerateContent?key={key}", json=data) as response:
+            async with session.post(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-2.0-flash-exp:generateContent?key={key}", json=data) as response:
                 try:
                     await message.reply((await response.json())["candidates"][0]["content"]["parts"][0]["text"], parse_mode="Markdown")
                 except Exception as e:
