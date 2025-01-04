@@ -29,7 +29,7 @@ bot = Bot(token="7804030886:AAFmqYAPW08gRlS6N6ASwqp5GXNPyifcS64")
 dp = Dispatcher()
 
 
-@dp.message(F.chat.id == -1002258024710, F.text)
+@dp.message(F.text)
 async def handler(message: types.Message) -> None:
     if message.text.startswith("."):
         text = message.text.lstrip(".").lstrip(" ")
