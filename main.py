@@ -421,4 +421,8 @@ async def handler(message: types.Message):
             await message.reply("Этот пользователь не находится в муте.")
 
 
-asyncio.run(dp.start_polling(bot))
+async def main():
+    await dp.start_polling(bot)
+
+
+asyncio.run(main())
