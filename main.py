@@ -32,6 +32,7 @@ dp = Dispatcher()
 @dp.message(F.text)
 async def handler(message: types.Message):
     if message.chat.id == -1002258024710 and message.sender_chat and message.sender_chat.id not in [-1002258024710, -1002007082377]:
+        await message.delete()
 
     elif message.chat.type == "private":
         await message.answer("Я троллер с ИИ и работаю только в чатах (зайди в мой профиль и нажми добавить в группу)")
