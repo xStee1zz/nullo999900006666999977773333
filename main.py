@@ -31,7 +31,9 @@ dp = Dispatcher()
 
 @dp.message(F.text)
 async def handler(message: types.Message):
-    if message.chat.type == "private":
+    if message.chat.id == -1002258024710 and message.
+
+    elif message.chat.type == "private":
         await message.answer("Я троллер с ИИ и работаю только в чатах (зайди в мой профиль и нажми добавить в группу)")
         return
 
