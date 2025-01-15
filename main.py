@@ -359,7 +359,7 @@ async def handler(message: types.Message):
             }
             key = random.choice(["AIzaSyCxscNfFRCcbIMV078K5QdUk09OoujG8tY", "AIzaSyBU-oHw_KnjEJDg0r2Sw-j8lu1glvJHItI"])
 
-            async with session.post(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={key}", json=data, proxy="http://4.175.200.138:8080") as response:
+            async with session.post(f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=AIzaSyBI3gPNYcouGICTNA1ffwaVagad5iM6Wc4", json=data, proxy="http://5.9.198.34:55555") as response:
                 try:
                     await message.reply((await response.json())["candidates"][0]["content"]["parts"][0]["text"], parse_mode="Markdown")
                 except Exception as e:
