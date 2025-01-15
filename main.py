@@ -10,9 +10,4 @@ logging.basicConfig(level=logging.INFO)
 bot = Bot(token="7804030886:AAFmqYAPW08gRlS6N6ASwqp5GXNPyifcS64")
 dp = Dispatcher()
 
-
-async def main():
-    await dp.start_polling(bot)
-
-
-asyncio.run(main())
+asyncio.run(dp.start_polling(bot))
