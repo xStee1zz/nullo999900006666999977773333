@@ -1,9 +1,6 @@
 import asyncio
-from datetime import datetime, timedelta
 import logging
-import pytz
 import random
-import json
 
 from aiogram import Bot, Dispatcher, F, types
 import aiohttp
