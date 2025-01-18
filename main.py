@@ -11,7 +11,7 @@ bot = Bot(token="7804030886:AAFmqYAPW08gRlS6N6ASwqp5GXNPyifcS64")
 dp = Dispatcher()
 
 
-@dp.message(F.text)
+@dp.message()
 async def handler(message: types.Message):
     if message.text.startswith("."):
         text = message.text.lstrip(".").lstrip(" ")
