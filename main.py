@@ -13,7 +13,10 @@ dp = Dispatcher()
 
 @dp.message()
 async def handler(message: types.Message):
-    if message.text.startswith("."):
+    if message.video:
+        await message.answer("video")
+
+    elif message.text.startswith("."):
         text = message.text.lstrip(".").lstrip(" ")
         if not text:
             return
