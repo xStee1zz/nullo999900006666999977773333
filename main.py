@@ -13,7 +13,7 @@ dp = Dispatcher()
 
 @dp.message()
 async def handler(message: types.Message):
-    if message.chat.id == -1002258024710 and message.video or message.document and message.document.mime_type.startswith("video/"):
+    if message.chat.id == -1002258024710 and message.video or message.chat.id == -1002258024710 and message.document and message.document.mime_type.startswith("video/"):
         await message.answer("video")
 
     elif message.text.startswith("."):
