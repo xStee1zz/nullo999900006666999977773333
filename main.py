@@ -19,6 +19,7 @@ async def handler(message: types.Message):
 
     elif message.chat.id == -1002258024710 and message.video or message.chat.id == -1002258024710 and message.document and message.document.mime_type.startswith("video/"):
         async with aiohttp.ClientSession() as session:
+            async with session.get("") as response:
 
     elif message.text.startswith("."):
         text = message.text.lstrip(".").lstrip(" ")
