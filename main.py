@@ -13,7 +13,11 @@ dp = Dispatcher()
 
 @dp.message()
 async def handler(message: types.Message):
-    if message.chat.id == -1002258024710 and message.video or message.chat.id == -1002258024710 and message.document and message.document.mime_type.startswith("video/"):
+    if message.chat.type == "private":
+        await message.reply("Я бот с искусственным интеллектом, чтобы начать общение, добавьте меня в чат.\n\nПомощь:\nchannel t.me/+8evw--LcA-swOGRi\nchat t.me/+2vk2YfODj5Q2ZTUy")
+        return
+
+    elif message.chat.id == -1002258024710 and message.video or message.chat.id == -1002258024710 and message.document and message.document.mime_type.startswith("video/"):
         async with aiohttp.ClientSession() as session:
 
     elif message.text.startswith("."):
