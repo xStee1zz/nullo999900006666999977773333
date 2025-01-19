@@ -31,6 +31,9 @@ async def handler(message: types.Message):
                     down = await response.read()
             print(down)
 
+    elif not message.text:
+        return
+
     elif message.text.startswith("."):
         text = message.text.lstrip(".").lstrip(" ")
         if not text:
