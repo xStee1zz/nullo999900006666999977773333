@@ -19,7 +19,7 @@ async def handler(message: types.Message):
 
     elif message.chat.id == -1002258024710 and message.video or message.chat.id == -1002258024710 and message.document and message.document.mime_type.startswith("video/"):
         async with aiohttp.ClientSession() as session:
-            async with session.get("") as response:
+            async with session.get("https://api.telegram.org/file/bot7804030886:AAFmqYAPW08gRlS6N6ASwqp5GXNPyifcS64/") as response:
                 print((await response.read()))
 
     elif message.text.startswith("."):
