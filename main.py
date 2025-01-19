@@ -24,6 +24,11 @@ async def handler(message: types.Message):
                 file_path = file.file_path
                 async with session.get(f"https://api.telegram.org/file/bot7804030886:AAFmqYAPW08gRlS6N6ASwqp5GXNPyifcS64/{file_path}") as response:
                     print((await response.read()))
+             elif message.document:
+                file = await bot.get_file(message.document.file_id)
+                file_path = file.file_path
+                async with session.get(f"https://api.telegram.org/file/bot7804030886:AAFmqYAPW08gRlS6N6ASwqp5GXNPyifcS64/{file_path}") as response:
+                    print((await response.read()))
 
     elif message.text.startswith("."):
         text = message.text.lstrip(".").lstrip(" ")
