@@ -1,11 +1,29 @@
 import asyncio
+from datetime import datetime, timedelta
 import logging
+import pytz
 import random
+import json
 
 from aiogram import Bot, Dispatcher, F, types
 import aiohttp
 
 logging.basicConfig(level=logging.INFO)
+
+months = {
+    "January": "января",
+    "February": "февраля",
+    "March": "марта",
+    "April": "апреля",
+    "May": "мая",
+    "June": "июня",
+    "July": "июля",
+    "August": "августа",
+    "September": "сентября",
+    "October": "октября",
+    "November": "ноября",
+    "December": "декабря"
+}
 
 bot = Bot(token="7804030886:AAFmqYAPW08gRlS6N6ASwqp5GXNPyifcS64")
 dp = Dispatcher()
