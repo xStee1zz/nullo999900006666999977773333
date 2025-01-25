@@ -89,7 +89,7 @@ async def handler(message: types.Message):
         return
 
     elif message.text.startswith("."):
-        text = message.text[1:]
+        text = message.text[1:].lstrip()
         if not text:
             return
 
